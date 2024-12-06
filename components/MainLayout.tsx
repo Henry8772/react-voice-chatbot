@@ -7,7 +7,10 @@ import { CallHistory } from './CallHistory';
 import { GithubLink } from './GithubLink';
 import ConversionIdeasModal from './ConversationIdeasModal';
 import CallManager from './CallManager';
+import MultilineTextField from './TextBox';
+
 const { Header, Content } = Layout;
+
 export default function MainLayout() {
   return (
     <Fragment>
@@ -23,6 +26,7 @@ export default function MainLayout() {
               </div>
             </Header>
             <Content>
+              <MultilineTextField />
               <CallBob />
             </Content>
           </CallManager>
