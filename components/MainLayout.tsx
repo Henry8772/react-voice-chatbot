@@ -3,7 +3,6 @@ import LanguageDropdown from './LanguageDropdown';
 import { Layout } from 'antd';
 import LanguageManager from './LanguageManager';
 import { Fragment } from 'react';
-import { CallHistory } from './CallHistory';
 import { GithubLink } from './GithubLink';
 import ConversionIdeasModal from './ConversationIdeasModal';
 import CallManager from './CallManager';
@@ -16,11 +15,10 @@ export default function MainLayout() {
           <CallManager>
             <Header className="flex bg-[#45badd] items-center h-12 flex-row px-0 justify-between">
               <GithubLink />
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <ConversionIdeasModal />
-                <CallHistory />
                 <LanguageDropdown />
-              </div>
+              </div> */}
             </Header>
             <Content>
               <CallBob />

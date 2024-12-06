@@ -21,9 +21,15 @@ export async function getChatGptAnswer(messagesWithSender: { message: string; se
     ...chatGptApiFormattedMessages, // The messages from our chat with ChatGPT
   ];
 
+  console.log('Sending message at:', new Date().toISOString());
+  console.log('Message content:', JSON.stringify(chatGptApiMessages, null, 2));
+
   try {
-    const response = await fetch(`/api/chat/message`, {
+    const response = await fetch(`http://localhost:8000/api/chat/message`, {
       method: METHODS.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(chatGptApiMessages),
     });
 
