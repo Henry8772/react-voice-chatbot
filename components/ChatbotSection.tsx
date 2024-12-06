@@ -6,7 +6,7 @@ const ChatbotSection = ({
 }: {
   onSend: (input: string, target: 'USER' | 'WAITER') => void;
 }) => {
-  const [userInput, setUserInput] = useState('Input');
+  const [userInput, setUserInput] = useState('');
   const [chatbotResponse, setChatbotResponse] = useState('Response');
   const [currFlow, setCurrFlow] = useState<'ASK_SUGGESTION' | 'CHOOSE_ITEM'>('ASK_SUGGESTION');
 
@@ -58,21 +58,6 @@ const ChatbotSection = ({
           Send
         </Button>
       </div>
-
-      {/* Chatbot Response Section */}
-      {/* <Box
-        sx={{
-          p: 2,
-          border: '1px solid #ccc',
-          borderRadius: 1,
-          backgroundColor: '#f9f9f9',
-          minHeight: '100px',
-        }}
-      >
-        <Typography variant="body1">
-          {chatbotResponse || 'The chatbot response will appear here.'}
-        </Typography>
-      </Box> */}
     </Box>
   );
 };
