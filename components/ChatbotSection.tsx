@@ -8,27 +8,34 @@ const ChatbotSection = ({
 }) => {
   const [userInput, setUserInput] = useState('Input');
   const [chatbotResponse, setChatbotResponse] = useState('Response');
+  const [currFlow, setCurrFlow] = useState<'ASK_SUGGESTION' | 'CHOOSE_ITEM'>('ASK_SUGGESTION');
 
   const handleSend = () => {
+    const prefix =
+      currFlow === 'ASK_SUGGESTION'
+        ? 'I want to get menu suggestions. '
+        : 'I will choose a menu item, please tell the waiter about this item. ';
     if (userInput.trim()) {
       // Simulate a chatbot response (replace with your chatbot logic)
       const response = `You said: "${userInput}"`;
       setChatbotResponse(response);
       setUserInput(''); // Clear the input
-      onSend(userInput, 'USER');
+      onSend(`${prefix}${userInput}`, 'USER');
     }
   };
 
   return (
     <Box sx={{ p: 4 }}>
       <Typography variant="h4" gutterBottom>
-        Chat with the Bot
+        Hey friend! Let's eat.
       </Typography>
       {/* User Input Section */}
       <div style={{ display: 'flex' }}>
         <TextField
           fullWidth
-          label="Your Message"
+          label={
+            currFlow === 'ASK_SUGGESTION' ? 'What would you like to eat?' : 'Choose a menu item'
+          }
           variant="outlined"
           value={userInput}
           onChange={e => setUserInput(e.target.value)}
@@ -42,7 +49,10 @@ const ChatbotSection = ({
           fullWidth
           variant="contained"
           color="primary"
-          onClick={handleSend}
+          onClick={() => {
+            setCurrFlow(prev => (prev === 'ASK_SUGGESTION' ? 'CHOOSE_ITEM' : 'ASK_SUGGESTION'));
+            handleSend();
+          }}
           sx={{ height: '100%' }}
         >
           Send
@@ -50,7 +60,7 @@ const ChatbotSection = ({
       </div>
 
       {/* Chatbot Response Section */}
-      <Box
+      {/* <Box
         sx={{
           p: 2,
           border: '1px solid #ccc',
@@ -62,7 +72,7 @@ const ChatbotSection = ({
         <Typography variant="body1">
           {chatbotResponse || 'The chatbot response will appear here.'}
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
